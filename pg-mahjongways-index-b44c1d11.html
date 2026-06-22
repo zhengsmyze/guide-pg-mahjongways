@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>麻将胡了 – 站点介绍与使用指引 | PG麻将胡了</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background: #f4f9fc;
+            color: #1b2c3a;
+            line-height: 1.6;
+            padding: 20px 16px 40px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 40px 40px 28px 28px;
+            padding: 28px 20px 40px;
+            box-shadow: 0 12px 30px rgba(6, 60, 80, 0.06);
+        }
+
+        /* 主视觉区 */
+        .hero {
+            background: linear-gradient(128deg, #d9f0f5 0%, #b7e0e9 80%);
+            border-radius: 32px;
+            padding: 32px 28px 40px;
+            text-align: center;
+            margin-bottom: 42px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "🀄";
+            font-size: 110px;
+            opacity: 0.08;
+            position: absolute;
+            right: -10px;
+            bottom: -18px;
+            pointer-events: none;
+            transform: rotate(12deg);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #074b5e;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #1d5b6e;
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.55);
+            padding: 8px 16px;
+            border-radius: 60px;
+            display: inline-block;
+            backdrop-filter: blur(3px);
+            font-weight: 450;
+        }
+
+        /* 网格卡片 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 44px;
+        }
+
+        @media (min-width: 640px) {
+            .card-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card {
+            background: #f0f9fd;
+            border-radius: 28px;
+            padding: 24px 22px 26px;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 6px rgba(6, 80, 100, 0.03);
+            border: 1px solid #d7eaf2;
+        }
+
+        .card:hover {
+            background: #def2f8;
+            box-shadow: 0 6px 16px rgba(0, 110, 130, 0.06);
+        }
+
+        .card-icon {
+            font-size: 1.8rem;
+            line-height: 1;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0a4a5c;
+            margin-bottom: 8px;
+            letter-spacing: -0.015em;
+        }
+
+        .card p {
+            font-size: 0.98rem;
+            color: #1c4f5e;
+            margin-bottom: 0;
+        }
+
+        .card p + p {
+            margin-top: 12px;
+        }
+
+        .card-highlight {
+            border-left: 4px solid #47b5c9;
+            background: #e2f2f7;
+        }
+
+        /* 自然链接段落区 */
+        .intro-block {
+            background: #f3fafd;
+            padding: 28px 24px 32px;
+            border-radius: 28px;
+            margin-bottom: 40px;
+            border: 1px solid #cfe3ec;
+        }
+
+        .intro-block p {
+            font-size: 1.05rem;
+            color: #1d4350;
+            margin-bottom: 16px;
+        }
+
+        .intro-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        .inline-link {
+            color: #096b82;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1.5px solid #78c2d4;
+            transition: border-color 0.15s, background 0.15s;
+            padding: 0 2px;
+        }
+
+        .inline-link:hover {
+            border-bottom-color: #096b82;
+            background: #d2edf5;
+            border-radius: 4px;
+        }
+
+        /* 适合人群卡片 */
+        .audience-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 14px;
+            margin-top: 6px;
+        }
+
+        .audience-tag {
+            background: #d1eaf2;
+            padding: 6px 18px;
+            border-radius: 80px;
+            font-size: 0.92rem;
+            color: #07404f;
+            font-weight: 470;
+            border: 1px solid #aed3df;
+        }
+
+        .faq-mini {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px dashed #b1d3df;
+        }
+
+        .faq-item {
+            margin-bottom: 16px;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: #0a4a5c;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .faq-answer {
+            color: #295a6b;
+            font-size: 0.97rem;
+            padding-left: 6px;
+        }
+
+        .footer-note {
+            text-align: center;
+            color: #517e8c;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            border-top: 1px solid #cde1ea;
+            padding-top: 28px;
+        }
+
+        .footer-note a {
+            color: #0c6f88;
+            text-decoration: none;
+            border-bottom: 1px solid #79b8ca;
+        }
+
+        .footer-note a:hover {
+            background: #ceeaf2;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 14px 30px;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .card {
+                padding: 20px 16px 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 主视觉 -->
+        <div class="hero">
+            <h1>麻将胡了 · 站点介绍</h1>
+            <p>清晰、可靠的信息入口 · 来自 pg-mahjongways.com</p>
+        </div>
+
+        <!-- 信息卡片网格 -->
+        <div class="card-grid">
+            <div class="card card-highlight">
+                <div class="card-icon">🀄</div>
+                <h3>站点定位</h3>
+                <p>pg-mahjongways 是一个围绕麻将主题设计的轻量信息站点，提供规则说明、玩法介绍与背景参考，帮助玩家快速了解游戏的整体框架。</p>
+                <p style="margin-top:12px;">内容风格偏向实用与入门，适合想要系统梳理麻将玩法的朋友。</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🧩</div>
+                <h3>用途与场景</h3>
+                <p>无论你是刚接触麻将的新手，还是想查缺补漏的爱好者，这里都能提供简洁的分类指引。从基础术语到组合思路，站点尝试用更直观的方式呈现。</p>
+                <p style="margin-top:10px;">同时也适合在休闲时间随手翻阅，补充一些小技巧。</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">👥</div>
+                <h3>适合人群</h3>
+                <div class="audience-list">
+                    <span class="audience-tag">麻将入门者</span>
+                    <span class="audience-tag">休闲玩家</span>
+                    <span class="audience-tag">规则研究者</span>
+                    <span class="audience-tag">聚会爱好者</span>
+                    <span class="audience-tag">文化兴趣者</span>
+                </div>
+                <p style="margin-top:14px;">内容不设门槛，没有复杂算法或竞技压力，更偏向知识分享与友好引导。</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📌</div>
+                <h3>可信说明</h3>
+                <p>页面内容来自编者对通用麻将规则的整理与参考，不涉及任何赌博、投注或金钱交易。我们坚持信息中立，仅作游戏文化及规则科普用途。</p>
+                <p style="margin-top:10px;">如果你对具体玩法有疑问，可以直接浏览站内文章或参考其他权威资料。</p>
+            </div>
+        </div>
+
+        <!-- 自然链接段落 + 进一步介绍 -->
+        <div class="intro-block">
+            <p><strong>关于 <a href="https://pg-mahjongways.com" class="inline-link">麻将胡了</a> 这个站点：</strong> 它并不是一个游戏客户端或下载平台，而是一个以“麻将胡了”为关键词的内容型页面集合。站内文章多围绕役种解析、记分逻辑、常见牌型展开，整体语气平实，没有夸张宣传。</p>
+            <p>对于想要了解麻将基础规则或查阅特定组合的玩家来说，<a href="https://pg-mahjongways.com" class="inline-link">麻将胡了</a> 是一个不错的起点。站内也收录了一些民间玩法变体，帮助读者理解不同地区的习惯差异。所有内容均以信息整理为目标，不引导用户进行任何充值或注册行为。</p>
+            <p>如果你在学习麻将的过程中希望找一个安静、无干扰的参考页，不妨将 <a href="https://pg-mahjongways.com" class="inline-link">麻将胡了</a> 加入书签。页面结构清晰，适合用手机或平板随时查阅。</p>
+        </div>
+
+        <!-- FAQ 摘要 + 提示 -->
+        <div class="faq-mini">
+            <div class="faq-item">
+                <span class="faq-question">❓ 这个网站和游戏平台有关系吗？</span>
+                <span class="faq-answer">没有直接关系。pg-mahjongways 是一个信息介绍类网站，不提供对赌、积分或在线对局功能，仅作知识展示。</span>
+            </div>
+            <div class="faq-item">
+                <span class="faq-question">❓ 内容是否权威？</span>
+                <span class="faq-answer">内容基于通用麻将规则整理，部分条目参考了日本麻将、国标麻将等体系。建议对于赛事级规则以官方文件为准。</span>
+            </div>
+            <div class="faq-item">
+                <span class="faq-question">❓ 移动端浏览体验如何？</span>
+                <span class="faq-answer">页面采用响应式布局，在手机上阅读舒适，卡片间距和字体都经过适配，可以轻松缩放或滑动。</span>
+            </div>
+            <div style="margin-top:20px; background:#e0f0f6; padding:14px 18px; border-radius:24px; color:#054553;">
+                💡 提示：如果你是第一次接触麻将，建议先从“基本术语”和“和牌牌型”两个分类开始阅读，逐步建立整体认知。
+            </div>
+        </div>
+
+        <!-- footer 自然提及 -->
+        <div class="footer-note">
+            <span>更多内容请浏览 <a href="https://pg-mahjongways.com">麻将胡了</a> · 站点持续更新中</span>
+        </div>
+    </div>
+</body>
+</html>
